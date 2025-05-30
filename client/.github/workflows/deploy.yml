@@ -1,27 +1,27 @@
-name: Deploy React App
+name: Build and Deploy Webpack App
 
 on:
   push:
     branches:
-      - main
+      - main  # or master, depending on your default branch
 
 jobs:
-  build-deploy:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v3
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18'
+          node-version: 16
 
       - name: Install dependencies
         run: npm install
 
-      - name: Build project
+      - name: Build app
         run: npm run build
 
       - name: Deploy to GitHub Pages
