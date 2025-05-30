@@ -3,13 +3,13 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  mode: 'development', // Changed to development for better debugging
+  mode: 'production', // Changed to development for better debugging
   devtool: 'source-map', // Enable source maps for debugging
   entry: './src/index.js', // Your main entry point
   output: {
     path: path.resolve(__dirname, 'dist'), // Output directory
-    filename: 'bundle.js', // Output filename
-    publicPath: '/', // Important for React Router
+    filename: 'main.js', // Output filename
+    publicPath: './', // Important for React Router
   },
   devServer: {
     static: path.resolve(__dirname, 'dist'),
