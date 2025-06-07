@@ -5,6 +5,7 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const signInRoutes = require('./routes/signin_signup');
 const productRoutes = require('./routes/product');
+const cartRoutes = require('./routes/cart');
 const db = require('./models/index');
 const app = express();
 app.use(cors({
@@ -19,6 +20,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use('/user', signInRoutes);
 app.use('/products', productRoutes);
+app.use('/cart', cartRoutes);
 app.use('/categories', require('./routes/categories'));
 process.on('unhandledRejection', (reason, promise) => {
     console.error('Unhandled Rejection at:', promise, 'reason:', reason);
