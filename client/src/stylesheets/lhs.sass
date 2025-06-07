@@ -1,3 +1,37 @@
+// Hamburger menu button
+.hamburger-btn
+    position: fixed
+    top: 20px
+    left: 20px
+    z-index: 1001
+    background: #0671C6
+    color: white
+    border: none
+    padding: 12px
+    border-radius: 5px
+    cursor: pointer
+    font-size: 18px
+    display: flex
+    align-items: center
+    justify-content: center
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2)
+    transition: all 0.3s ease
+    
+    &:hover
+        background: #0CB4E9
+        transform: scale(1.05)
+
+// Sidebar overlay for mobile
+.sidebar-overlay
+    position: fixed
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+    background: rgba(0, 0, 0, 0.5)
+    z-index: 999
+    backdrop-filter: blur(2px)
+
 .lhs
     background-color: #0671C6
     display: flex
@@ -7,11 +41,48 @@
     max-height: 100%
     overflow: auto
     padding-bottom: 10px
+    transition: all 0.3s ease
+    position: relative
+    
+    // Collapsed state
+    &.collapsed
+        width: 60px !important
+        min-width: 60px
+        
+        .title
+            display: none
+        
+        li
+            justify-content: center
+            padding: 15px 10px
+            
+            a
+                justify-content: center
+        
+        .sidebar-bottom
+            li
+                justify-content: center
+
+    // Mobile styles
+    &.mobile
+        position: fixed
+        top: 0
+        left: 0
+        z-index: 1000
+        width: 250px !important
+        transform: translateX(-100%)
+        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1)
+        
+        &:not(.collapsed)
+            transform: translateX(0)
+
     .lhs_list_menu_wrapper
         display: flex
         flex-direction: column
         justify-content: space-between
         width: 100%
+        height: 100%
+        
         .sidebar-bottom
             width: 100%
             ul
@@ -20,16 +91,80 @@
                 li
                     width: 100%
                     padding: 10px
+                    display: flex
+                    align-items: center
+                    transition: all 0.3s ease
+                    
+                    &:hover
+                        background-color: #0CB4E9
+
     ul.lhs_list_menu
         width: 100%
         cursor: pointer
+        flex: 1
+        
         li
             padding: 10px
-            border-bottom: 1px solid #0671C6
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1)
+            display: flex
+            align-items: center
+            transition: all 0.3s ease
+            
             a
                 display: flex
                 align-items: center
+                width: 100%
+                text-decoration: none
+                color: inherit
+                
             &:hover
                 background-color: #0CB4E9
+                transform: translateX(2px)
+            
+            &.active
+                background-color: #0CB4E9
+                border-left: 4px solid #fff
+                
             span
                 flex: 1
+                margin-left: 10px
+                white-space: nowrap
+                overflow: hidden
+                text-overflow: ellipsis
+
+// Responsive breakpoints
+@media (max-width: 768px)
+    .lhs:not(.mobile)
+        display: none
+
+@media (min-width: 769px)
+    .hamburger-btn
+        display: none
+    
+    .lhs.mobile
+        position: relative !important
+        transform: none !important
+        box-shadow: none !important
+
+@media (max-width: 480px)
+    .lhs.mobile
+        width: 100% !important
+        
+    .hamburger-btn
+        top: 15px
+        left: 15px
+        padding: 10px
+        font-size: 16px
+
+// Animations
+@keyframes slideIn
+    from
+        transform: translateX(-100%)
+    to
+        transform: translateX(0)
+
+@keyframes slideOut
+    from
+        transform: translateX(0)
+    to
+        transform: translateX(-100%)

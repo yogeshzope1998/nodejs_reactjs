@@ -4,6 +4,7 @@ import { Route, Routes } from 'react-router-dom';
 import Dashboard from '../screens/dashboard';
 import Product from '../screens/product';
 import Category from '../screens/category';
+import Stores from '../screens/stores';
 export const RhsView = () => {
     return (
         <div className="rhs">
@@ -13,7 +14,7 @@ export const RhsView = () => {
                 <Route path="/product" element={<Product />} />
                 <Route path="/settings" element={<h1>Settings</h1>} />
                 <Route path="/category" element={<Category />} />
-                <Route path="/messages" element={<h1>Messages</h1>} />
+                <Route path="/store" element={<Stores />} />
            </Routes>
         </div>
     )
