@@ -7,10 +7,12 @@ import { BiCategory } from "react-icons/bi";
 import { MdAttachMoney } from "react-icons/md";
 import { IoSettings } from "react-icons/io5";
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useUserContext } from '../context';
 
 export const LhsView = () => {
     const location = useLocation();
     const navigate = useNavigate();
+    const { logout } = useUserContext();
     const [active, setActive] = React.useState(location.pathname);
     const [isCollapsed, setIsCollapsed] = React.useState(false);
     const [isMobile, setIsMobile] = React.useState(window.innerWidth <= 768);
@@ -92,6 +94,7 @@ export const LhsView = () => {
             });
             
             if (response.ok) {
+                logout(); // Clear context and localStorage
                 navigate('/signin');
             }
         } catch (error) {
