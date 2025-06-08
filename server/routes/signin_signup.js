@@ -94,6 +94,31 @@ routes.get('/dashboard', authenticate, (req, res) => {
     });
 });
 
+// Get current user info (for checking auth status)
+routes.get('/me', authenticate, async (req, res) => {
+    try {
+        const user = await User.findByPk(req.user, {
+            attributes: ['id', 'firstName', 'lastName', 'email'] // Don't return password
+        });
+        
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+        
+        res.status(200).json({ 
+            user: {
+                id: user.id,
+                firstName: user.firstName,
+                lastName: user.lastName,
+                email: user.email,
+            }
+        });
+    } catch (error) {
+        console.error('Error fetching user data:', error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+});
+
 // Logout route to clear the cookie
 routes.post('/logout', (req, res) => {
     res.clearCookie('token');

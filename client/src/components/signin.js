@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import '../stylesheets/signin.sass'; // Import the SCSS file
 import { Link, useNavigate } from 'react-router-dom';
+import { useUserContext } from '../context';
 
 const Signin = () => {
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [errorMessage, setErrorMessage] = useState(''); // State for error messages
-
+    const {setUserData} = useUserContext();
     const handleSubmit = async (e) => {
         e.preventDefault();
         setErrorMessage(''); // Clear any previous error messages
@@ -35,6 +36,7 @@ const Signin = () => {
 
             const data = await response.json();
             navigate('/user/dashboard'); // Redirect to dashboard on successful sign-in
+            setUserData(data.user);
             window.location.reload();
         } catch (error) {
             // If there's a network error or other client-side error

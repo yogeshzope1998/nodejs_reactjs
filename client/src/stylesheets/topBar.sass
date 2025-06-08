@@ -1,4 +1,318 @@
 .top_bar
-    background-color: #063F71
-    height: 50px
+    background: linear-gradient(135deg, #063F71 0%, #0671C6 100%)
+    height: 60px
     position: sticky
+    top: 0
+    z-index: 1002
+    width: 100%
+    display: flex
+    align-items: center
+    justify-content: space-between
+    padding: 0 24px
+    backdrop-filter: blur(10px)
+    transition: all 0.3s ease
+
+    // Left section
+    .top_bar_left
+        display: flex
+        align-items: center
+        flex-shrink: 0
+
+        .app_title
+            color: white
+            font-size: 1.5rem
+            font-weight: 700
+            margin: 0
+            letter-spacing: -0.5px
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2)
+
+    // Center section
+    .top_bar_center
+        flex: 1
+        max-width: 500px
+        margin: 0 2rem
+
+        .search_container
+            position: relative
+            width: 100%
+
+            .search_icon
+                position: absolute
+                left: 16px
+                top: 50%
+                transform: translateY(-50%)
+                color: #7f8c8d
+                font-size: 0.9rem
+                z-index: 1
+
+            .search_input
+                width: 100%
+                height: 40px
+                padding: 0 16px 0 45px
+                border: none
+                border-radius: 20px
+                background: rgba(255, 255, 255, 0.15)
+                color: white
+                font-size: 0.9rem
+                backdrop-filter: blur(10px)
+                transition: all 0.3s ease
+
+                &::placeholder
+                    color: rgba(255, 255, 255, 0.7)
+
+                &:focus
+                    outline: none
+                    background: rgba(255, 255, 255, 0.25)
+                    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3)
+
+    // Right section
+    .top_bar_right
+        display: flex
+        align-items: center
+        gap: 1rem
+        flex-shrink: 0
+
+        // Notification section
+        .notification_container
+            position: relative
+
+            .icon_button
+                background: rgba(255, 255, 255, 0.1)
+                border: none
+                border-radius: 50%
+                width: 40px
+                height: 40px
+                display: flex
+                align-items: center
+                justify-content: center
+                color: white
+                cursor: pointer
+                transition: all 0.3s ease
+                position: relative
+
+                &:hover
+                    background: rgba(255, 255, 255, 0.2)
+                    transform: translateY(-1px)
+
+                .notification_badge
+                    position: absolute
+                    top: -2px
+                    right: -2px
+                    background: #e74c3c
+                    color: white
+                    border-radius: 50%
+                    width: 18px
+                    height: 18px
+                    font-size: 0.7rem
+                    display: flex
+                    align-items: center
+                    justify-content: center
+                    font-weight: 600
+
+            .notification_dropdown
+                position: absolute
+                top: 50px
+                right: 0
+                width: 320px
+                background: white
+                border-radius: 12px
+                box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15)
+                z-index: 1003
+                overflow: hidden
+                animation: slideDown 0.3s ease
+
+                .dropdown_header
+                    background: #f8f9fa
+                    padding: 16px 20px
+                    border-bottom: 1px solid #e9ecef
+
+                    h4
+                        margin: 0
+                        color: #2c3e50
+                        font-size: 1rem
+                        font-weight: 600
+
+                .notification_item
+                    padding: 16px 20px
+                    border-bottom: 1px solid #f1f2f6
+                    cursor: pointer
+                    transition: all 0.2s ease
+
+                    &:hover
+                        background: #f8f9fa
+
+                    &:last-child
+                        border-bottom: none
+
+                    p
+                        margin: 0 0 4px 0
+                        color: #2c3e50
+                        font-size: 0.9rem
+                        font-weight: 500
+
+                    span
+                        color: #7f8c8d
+                        font-size: 0.8rem
+
+        // Profile section
+        .profile_container
+            position: relative
+
+            .profile_button
+                background: rgba(255, 255, 255, 0.1)
+                border: none
+                border-radius: 25px
+                padding: 6px 16px 6px 6px
+                display: flex
+                align-items: center
+                gap: 10px
+                color: white
+                cursor: pointer
+                transition: all 0.3s ease
+
+                &:hover
+                    background: rgba(255, 255, 255, 0.2)
+                    transform: translateY(-1px)
+
+                .profile_avatar
+                    width: 32px
+                    height: 32px
+                    border-radius: 50%
+                    background: rgba(255, 255, 255, 0.2)
+                    display: flex
+                    align-items: center
+                    justify-content: center
+                    font-size: 0.9rem
+
+                    &.large
+                        width: 40px
+                        height: 40px
+                        font-size: 1.1rem
+
+                .profile_name
+                    font-size: 0.9rem
+                    font-weight: 500
+
+            .profile_dropdown
+                position: absolute
+                top: 50px
+                right: 0
+                width: 280px
+                background: white
+                border-radius: 12px
+                box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15)
+                z-index: 1003
+                overflow: hidden
+                animation: slideDown 0.3s ease
+
+                .dropdown_header
+                    background: #f8f9fa
+                    padding: 20px
+
+                    .profile_info
+                        display: flex
+                        align-items: center
+                        gap: 12px
+
+                        .profile_avatar
+                            background: #0671C6
+                            color: white
+
+                        h4
+                            margin: 0 0 4px 0
+                            color: #2c3e50
+                            font-size: 1rem
+                            font-weight: 600
+
+                        p
+                            margin: 0
+                            color: #7f8c8d
+                            font-size: 0.8rem
+
+                .dropdown_menu
+                    padding: 8px 0
+
+                    .dropdown_item
+                        width: 100%
+                        padding: 12px 20px
+                        border: none
+                        background: none
+                        text-align: left
+                        cursor: pointer
+                        display: flex
+                        align-items: center
+                        gap: 12px
+                        color: #2c3e50
+                        font-size: 0.9rem
+                        transition: all 0.2s ease
+
+                        &:hover
+                            background: #f8f9fa
+
+                        &.logout
+                            color: #e74c3c
+                            border-top: 1px solid #f1f2f6
+                            margin-top: 8px
+
+// Animations
+@keyframes slideDown
+    from
+        opacity: 0
+        transform: translateY(-10px)
+    to
+        opacity: 1
+        transform: translateY(0)
+
+// Mobile responsiveness
+@media (max-width: 768px)
+    .top_bar
+        height: 55px
+        padding: 0 16px
+        padding-left: 60px // Space for hamburger menu
+
+        .top_bar_left
+            .app_title
+                font-size: 1.2rem
+
+        .top_bar_center
+            margin: 0 1rem
+            max-width: none
+            flex: 1
+
+            .search_container
+                .search_input
+                    height: 36px
+                    font-size: 0.85rem
+
+        .top_bar_right
+            gap: 0.5rem
+
+            .profile_button
+                padding: 4px 12px 4px 4px
+
+                .profile_name
+                    display: none
+
+            .notification_dropdown,
+            .profile_dropdown
+                width: 280px
+                right: -10px
+
+@media (max-width: 480px)
+    .top_bar
+        height: 50px
+        padding: 0 12px
+        padding-left: 55px
+
+        .top_bar_left
+            .app_title
+                font-size: 1.1rem
+
+        .top_bar_center
+            display: none // Hide search on very small screens
+
+        .top_bar_right
+            .notification_dropdown,
+            .profile_dropdown
+                width: 260px
+                right: -15px
