@@ -106,12 +106,13 @@ const Dashboard = () => {
                 navigate('/user/category');
                 break;
             case 'view-analytics':
-                // Navigate to analytics page when implemented
                 console.log('Analytics page not implemented yet');
                 break;
             case 'settings':
-                // Navigate to settings page when implemented
                 console.log('Settings page not implemented yet');
+                break;
+            case 'Add Category':
+                navigate('/user/category');
                 break;
             default:
                 break;
@@ -239,6 +240,13 @@ const Dashboard = () => {
                         >
                             <IoSettings />
                             Settings
+                        </button>
+                        <button 
+                            className="action-btn settings"
+                            onClick={() => handleQuickAction('Add Category')}
+                        >
+                            <BiCategory />
+                            Add Category
                         </button>
                     </div>
                 </div>
