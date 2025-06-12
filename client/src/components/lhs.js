@@ -54,32 +54,6 @@ export const LhsView = () => {
         setIsCollapsed(!isCollapsed);
     };
 
-    const handleClickCategory = async() => {
-        try{
-            const response = await fetch('http://localhost:3001/categories/get-categories', {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                credentials: 'include', // This tells fetch to include cookies
-            });
-
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            if (response.status === 200) {
-                const data = response.json();
-                setActive('/user/category');
-                navigate('/user/category');
-                // Close sidebar on mobile after navigation
-                if (isMobile) {
-                    setIsCollapsed(true);
-                }
-            }
-        }catch(err){
-            console.log(err);
-        }
-    };
     
     const bottomItems = [
         { name: 'Add product', icon: <FaPlusCircle />, action: () => console.log('Add product clicked') },
@@ -127,7 +101,7 @@ export const LhsView = () => {
                             <FaShoppingBag className="add_icon" />
                             <span className="title left-10">Products</span>
                         </li>
-                        <li className={active === '/user/category' ? 'active' : ''} onClick={handleClickCategory}>
+                        <li className={active === '/user/category' ? 'active' : ''} onClick={() => handleClick('/user/category')}>
                             <BiCategory className="category_icon" />
                             <span className="title left-10">Categories</span>
                         </li>

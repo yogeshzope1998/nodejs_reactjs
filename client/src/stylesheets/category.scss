@@ -1,3 +1,5 @@
+@use 'sass:color';
+
 // Variables
 $primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 $primary-color: #667eea;
@@ -549,5 +551,34 @@ $error-hover: #c82333;
     padding: 1rem;
     height: calc(100% - 80px);
     overflow-y: auto;
+  }
+}
+
+.header-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.add-btn {
+  background: $primary-color;
+  border: none;
+  color: $white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  @include transition();
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+
+  &:hover {
+    background: color.adjust($primary-color, $lightness: 5%);
+    @include hover-lift();
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
   }
 } 

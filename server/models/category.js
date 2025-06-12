@@ -1,26 +1,29 @@
-
 module.exports = (sequelize, DataTypes) => {
-    const User = sequelize.define("User", {
+    const Category = sequelize.define('Category', {
         id: {
             type: DataTypes.INTEGER,
-            autoIncrement: true,
             primaryKey: true,
-            allowNull: false,
+            autoIncrement: true,
         },
-        firstName: {
+        user_id: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            references: {
+                model: 'users',
+                key: 'id',
+            },
+            onDelete: 'CASCADE',
+            onUpdate: 'CASCADE',
+        },
+        category_name: {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        lastName: {
+        category_description: {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        email: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            unique: true,
-        },
-        password: {
+        category_image: {
             type: DataTypes.STRING,
             allowNull: false,
         },
@@ -35,12 +38,12 @@ module.exports = (sequelize, DataTypes) => {
             defaultValue: sequelize.literal('CURRENT_TIMESTAMP'),
         },
     }, {
-        tableName: 'users',
+        tableName: 'categories',
         timestamps: true,
     });
-    User.associate = (models) => {
-        User.hasMany(models.Category, { foreignKey: 'user_id', as: 'categories' });
+    Category.associate = (models) => {
+        Category.belongsTo(models.User, { foreignKey: 'user_id', as: 'user' });
     }
 
-    return User;
+    return Category;
 }
